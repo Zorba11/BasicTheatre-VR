@@ -12,37 +12,31 @@ class Title extends React.Component {
     super();
     this.state = {
       fade: new Animated.Value(0),
-      slide: new Animated.Value(0),
+      slide: new Animated.Value(1.5),
     };
   }
 
   componentDidMount() {
-
-    this.state.fade.setValue(1);
-    this.state.slide.setValue(1.5);
-    
+    //start sequence
     Animated.sequence([
       //animation 1
-      Animated.timing(this.state.fade, {
-        toValue: 0,
-        duration: 2000,
-        easing: Easing.ease,
-      }),
-      //fire animation 2 and 3 at same time
-      Animated.stagger(500, [
-        //animation 2
-        Animated.timing(this.state.fade, {
-          toValue: 1,
-          duration: 2000,
-          easing: Easing.ease,
-        }),
-        //animation 3
-        Animated.timing(this.state.slide, {
-          toValue: 0,
-          duration: 2000,
-          easing: Easing.ease,
-        }),
-      ]),
+      Animated.timing(
+        this.state.fade,
+        {
+         toValue: 1,
+         duration: 1000,
+         easing: Easing.ease
+        }
+      ),
+      //animation 2
+      Animated.timing(
+        this.state.slide,
+        {
+         toValue: 0,
+         duration: 1000,
+         easing: Easing.ease
+        }
+      )
     ]).start();
   }
 
